@@ -14,4 +14,4 @@
 - datetime
 
 ### Preview
-![](Screenshot 2024-08-30 at 19.14.31.jpg)
+![](Screenshot 2024-08-30 at 19.14.31.png)
