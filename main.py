@@ -4,6 +4,7 @@ import cv2
 from emailing import send_email
 import streamlit as st
 from datetime import datetime
+from threading import Thread
 
 st.title("Motion Detector")
 start = st.button("Start camera")
@@ -68,8 +69,12 @@ if start:
         status_list = status_list[-2:]
 
         if status_list[0] == 1 and status_list[1] == 0:
-            send_email(image_with_object)
-            clean_folder()
+            email_thread = Thread(target=send_email, args=(image_with_object, ))
+            email_thread.daemon = True
+            clean_thread = Thread(target=clean_folder)
+            clean_thread.daemon = True
+
+            email_thread.start()
 
         cv2.putText(img=frame, text=now.strftime("%A"), org=(30, 80),
                     fontFace=cv2.FONT_HERSHEY_PLAIN, fontScale=3,
@@ -87,3 +92,4 @@ if start:
             break
 
     video.release()
+    clean_thread.start()
