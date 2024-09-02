@@ -9,9 +9,8 @@
 ### Techniques/Libraries used: 
 - Threading
 - glob
-- cv2
+- OpenCV
 - streamlit 
-- datetime
 
 ### Preview
 ![](email_screenshot.png)
